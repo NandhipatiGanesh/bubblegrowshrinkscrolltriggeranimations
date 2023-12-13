@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+ 
+
+* {
+  box-sizing: border-box;
+}
+
+
+.section {
+  width: 100%;
+  height: 100vh;
+  background-color: #f0efff;
+  color:black;
+  display:flex;
+   flex-wrap: wrap;
+  justify-content:center;
+  align-items:center;
+  Font-size:24px;
+}
+
+.wrapper {
+  clip-path: circle(1% at 50% 50%);
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100vh;
+}
+
+.panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+  height: 100vh;
+  background-color: blue;
+  flex: 1 0 100%;
+}
+
+.teal {
+  background-color: #fff3c9;
+}
+
+.purple {
+  background-color: #eaf2ff;
+}
+
+.green {
+  background-color: #37b268;
+}
+
+.orange {
+  background-color: #ba4700;
+}
+
+    </style>
+</head>
+<body>
+<div class="section">Hii 👋</div>
+<div class="section wrapper">
+  <div class="content">
+    <div class="panel">
+      <h1>Contact Me For</h1>
+    </div>
+    <div class="panel green">
+      <h1>Website Design</h1>
+    </div>
+    <div class="panel purple">
+      <h1>Ecommerce Site Design</h1>
+    </div>
+    <div class="panel teal">
+      <h1>To Digitalise</h1>
+    </div>
+    <div class="panel orange">
+      <h1>Your Business</h1>
+    </div>
+  </div>
+</div>
+<div class="section"> Let Me Know</div>
+
+<!-- Include GSAP and ScrollTrigger scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+
+<script>
+console.clear();
+
+gsap.registerPlugin(ScrollTrigger);
+
+const panels = gsap.utils.toArray(".panel");
+const totalPanels = panels.length;
+
+gsap
+  .timeline({
+    scrollTrigger: {
+      trigger: ".wrapper",
+      start: "top top",
+      end: "+=" + (100 * totalPanels + 1) + "%",
+      scrub: true,
+      pin: true,
+    }
+  })
+  .to(".wrapper", {
+    clipPath: "circle(71% at 50% 50%)",
+    duration: 1 / totalPanels
+  })
+  .to(panels, {
+    xPercent: -100 * (totalPanels - 1),
+    duration: 1,
+    ease: "none"
+  });
+
+
+</script>
+</body>
+</html>
